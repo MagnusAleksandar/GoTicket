@@ -1,6 +1,6 @@
 <?php
 class Boleta {
-    private $idBoleta, $idAsistente, $idFactura, $pulep, $precio;
+    private $idBoleta, $idAsistente, $idFactura, $precio;
     
     // Getters y Setters
     public function getIdBoleta() {
@@ -13,10 +13,6 @@ class Boleta {
 
     public function getIdFactura() {
         return $this->idFactura;
-    }
-
-    public function getPulep() {
-        return $this->pulep;
     }
 
     public function getPrecio() {
@@ -35,20 +31,16 @@ class Boleta {
         $this->idFactura = $idFactura;
     }
 
-    public function setPulep($pulep){
-        $this->pulep = $pulep;
-    }
 
     public function setPrecio($precio){
         $this->precio = $precio;
     }
 
     // Constructor
-    public function __construct($idBoleta, $idAsistente, $idFactura, $pulep, $precio) {
+    public function __construct($idBoleta, $idAsistente, $idFactura, $precio) {
         $this->idBoleta = $idBoleta;
         $this->idAsistente = $idAsistente;
         $this->idFactura = $idFactura;
-        $this->pulep = $pulep;
         $this->precio = $precio;
     }
 }

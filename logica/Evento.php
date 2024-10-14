@@ -1,6 +1,7 @@
 <?php
 class Evento {
     private $pulep, $nombre, $fecha, $hora, $aforo, $nitProveedor;
+    
     public function getPulep() {
         return $this->pulep;
     }

@@ -1,13 +1,9 @@
 <?php
 class Factura {
-    private $idFactura, $idBoleta, $idCliente, $pulep, $fechaGeneracion, $horaGeneracion, $montoTotal;
+    private $idFactura, $idCliente, $pulep, $fechaGeneracion, $horaGeneracion, $montoTotal;
     
     public function getIdFactura() {
         return $this->idFactura;
-    }
-
-    public function getIdBoleta() {
-        return $this->idBoleta;
     }
 
     public function getIdCliente() {
@@ -32,10 +28,6 @@ class Factura {
 
     public function setIdFactura($idFactura): void {
         $this->idFactura = $idFactura;
-    }
-
-    public function setIdBoleta($idBoleta): void {
-        $this->idBoleta = $idBoleta;
     }
 
     public function setIdCliente($idCliente): void {
