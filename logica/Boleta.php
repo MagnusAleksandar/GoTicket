@@ -1,68 +1,55 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package logica;
+<?php
+class Boleta {
+    private $idBoleta, $idAsistente, $idFactura, $pulep, $precio;
+    
+    // Getters y Setters
+    public function getIdBoleta() {
+        return $this->idBoleta;
+    }
 
-/**
- *
- * @author Daniela Huertas
- */
-public class Boleta {
-    private int idBoleta;
-    private int idAsistente;
-    private int idFactura;
-    private String pulep;
-    private int precio;
+    public function getIdAsistente() {
+        return $this->idAsistente;
+    }
+
+    public function getIdFactura() {
+        return $this->idFactura;
+    }
+
+    public function getPulep() {
+        return $this->pulep;
+    }
+
+    public function getPrecio() {
+        return $this->precio;
+    }
+
+    public function setIdBoleta($idBoleta) {
+        $this->idBoleta = $idBoleta;
+    }
+
+    public function setIdAsistente($idAsistente) {
+        $this->idAsistente = $idAsistente;
+    }
+
+    public function setIdFactura($idFactura) {
+        $this->idFactura = $idFactura;
+    }
+
+    public function setPulep($pulep){
+        $this->pulep = $pulep;
+    }
+
+    public function setPrecio($precio){
+        $this->precio = $precio;
+    }
 
     // Constructor
-    public Boleta(int idBoleta, int idAsistente, int idFactura, String pulep, int precio) {
-        this.idBoleta = idBoleta;
-        this.idAsistente = idAsistente;
-        this.idFactura = idFactura;
-        this.pulep = pulep;
-        this.precio = precio;
-    }
-
-    // Getters y Setters
-    public int getIdBoleta() {
-        return idBoleta;
-    }
-
-    public void setIdBoleta(int idBoleta) {
-        this.idBoleta = idBoleta;
-    }
-
-    public int getIdAsistente() {
-        return idAsistente;
-    }
-
-    public void setIdAsistente(int idAsistente) {
-        this.idAsistente = idAsistente;
-    }
-
-    public int getIdFactura() {
-        return idFactura;
-    }
-
-    public void setIdFactura(int idFactura) {
-        this.idFactura = idFactura;
-    }
-
-    public String getPulep() {
-        return pulep;
-    }
-
-    public void setPulep(String pulep) {
-        this.pulep = pulep;
-    }
-
-    public int getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
+    public function __construct($idBoleta, $idAsistente, $idFactura, $pulep, $precio) {
+        $this->idBoleta = $idBoleta;
+        $this->idAsistente = $idAsistente;
+        $this->idFactura = $idFactura;
+        $this->pulep = $pulep;
+        $this->precio = $precio;
     }
 }
 

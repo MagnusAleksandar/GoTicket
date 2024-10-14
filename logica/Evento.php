@@ -1,79 +1,62 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package logica;
-
-/**
- *
- * @author Daniela Huertas
- */
-import java.util.Date;
-
-public class Evento {
-    private String pulep;
-    private String nombre;
-    private Date fecha;
-    private String hora;  // Utilizamos String para simplificar el formato de tiempo (HH:mm:ss)
-    private int aforo;
-    private int nitProveedor;
-
-    // Constructor
-    public Evento(String pulep, String nombre, Date fecha, String hora, int aforo, int nitProveedor) {
-        this.pulep = pulep;
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.aforo = aforo;
-        this.nitProveedor = nitProveedor;
+<?php
+class Evento {
+    private $pulep, $nombre, $fecha, $hora, $aforo, $nitProveedor;
+    public function getPulep() {
+        return $this->pulep;
     }
 
-    // Getters y Setters
-    public String getPulep() {
-        return pulep;
+    public function getNombre() {
+        return $this->nombre;
     }
 
-    public void setPulep(String pulep) {
-        this.pulep = pulep;
+    public function getFecha() {
+        return $this->fecha;
     }
 
-    public String getNombre() {
-        return nombre;
+    public function getHora() {
+        return $this->hora;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public function getAforo() {
+        return $this->aforo;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public function getNitProveedor() {
+        return $this->nitProveedor;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public function setPulep($pulep): void {
+        $this->pulep = $pulep;
     }
 
-    public String getHora() {
-        return hora;
+    public function setNombre($nombre): void {
+        $this->nombre = $nombre;
     }
 
-    public void setHora(String hora) {
-        this.hora = hora;
+    public function setFecha($fecha): void {
+        $this->fecha = $fecha;
     }
 
-    public int getAforo() {
-        return aforo;
+    public function setHora($hora): void {
+        $this->hora = $hora;
     }
 
-    public void setAforo(int aforo) {
-        this.aforo = aforo;
+    public function setAforo($aforo): void {
+        $this->aforo = $aforo;
     }
 
-    public int getNitProveedor() {
-        return nitProveedor;
+    public function setNitProveedor($nitProveedor): void {
+        $this->nitProveedor = $nitProveedor;
     }
 
-    public void setNitProveedor(int nitProveedor) {
-        this.nitProveedor = nitProveedor;
+    public function __construct($pulep, $nombre, $fecha, $hora, $aforo, $nitProveedor) {
+        $this->pulep = $pulep;
+        $this->nombre = $nombre;
+        $this->fecha = $fecha;
+        $this->hora = $hora;
+        $this->aforo = $aforo;
+        $this->nitProveedor = $nitProveedor;
     }
+
 }
+?>

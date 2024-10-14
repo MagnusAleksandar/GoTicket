@@ -1,89 +1,72 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package logica;
-
-/**
- *
- * @author Daniela Huertas
- */
-import java.util.Date;
-
-public class Factura {
-    private int idFactura;
-    private int idBoleta;
-    private int idCliente;
-    private String pulep;
-    private Date fechaGeneracion;
-    private String horaGeneracion; // Utilizamos String para simplificar el formato de tiempo (HH:mm:ss)
-    private double montoTotal;
-
-    // Constructor
-    public Factura(int idFactura, int idBoleta, int idCliente, String pulep, Date fechaGeneracion, String horaGeneracion, double montoTotal) {
-        this.idFactura = idFactura;
-        this.idBoleta = idBoleta;
-        this.idCliente = idCliente;
-        this.pulep = pulep;
-        this.fechaGeneracion = fechaGeneracion;
-        this.horaGeneracion = horaGeneracion;
-        this.montoTotal = montoTotal;
+<?php
+class Factura {
+    private $idFactura, $idBoleta, $idCliente, $pulep, $fechaGeneracion, $horaGeneracion, $montoTotal;
+    
+    public function getIdFactura() {
+        return $this->idFactura;
     }
 
-    // Getters y Setters
-    public int getIdFactura() {
-        return idFactura;
+    public function getIdBoleta() {
+        return $this->idBoleta;
     }
 
-    public void setIdFactura(int idFactura) {
-        this.idFactura = idFactura;
+    public function getIdCliente() {
+        return $this->idCliente;
     }
 
-    public int getIdBoleta() {
-        return idBoleta;
+    public function getPulep() {
+        return $this->pulep;
     }
 
-    public void setIdBoleta(int idBoleta) {
-        this.idBoleta = idBoleta;
+    public function getFechaGeneracion() {
+        return $this->fechaGeneracion;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public function getHoraGeneracion() {
+        return $this->horaGeneracion;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public function getMontoTotal() {
+        return $this->montoTotal;
     }
 
-    public String getPulep() {
-        return pulep;
+    public function setIdFactura($idFactura): void {
+        $this->idFactura = $idFactura;
     }
 
-    public void setPulep(String pulep) {
-        this.pulep = pulep;
+    public function setIdBoleta($idBoleta): void {
+        $this->idBoleta = $idBoleta;
     }
 
-    public Date getFechaGeneracion() {
-        return fechaGeneracion;
+    public function setIdCliente($idCliente): void {
+        $this->idCliente = $idCliente;
     }
 
-    public void setFechaGeneracion(Date fechaGeneracion) {
-        this.fechaGeneracion = fechaGeneracion;
+    public function setPulep($pulep): void {
+        $this->pulep = $pulep;
     }
 
-    public String getHoraGeneracion() {
-        return horaGeneracion;
+    public function setFechaGeneracion($fechaGeneracion): void {
+        $this->fechaGeneracion = $fechaGeneracion;
     }
 
-    public void setHoraGeneracion(String horaGeneracion) {
-        this.horaGeneracion = horaGeneracion;
+    public function setHoraGeneracion($horaGeneracion): void {
+        $this->horaGeneracion = $horaGeneracion;
     }
 
-    public double getMontoTotal() {
-        return montoTotal;
+    public function setMontoTotal($montoTotal): void {
+        $this->montoTotal = $montoTotal;
     }
 
-    public void setMontoTotal(double montoTotal) {
-        this.montoTotal = montoTotal;
+    public function __construct($idFactura, $idBoleta, $idCliente, $pulep, $fechaGeneracion, $horaGeneracion, $montoTotal) {
+        $this->idFactura = $idFactura;
+        $this->idBoleta = $idBoleta;
+        $this->idCliente = $idCliente;
+        $this->pulep = $pulep;
+        $this->fechaGeneracion = $fechaGeneracion;
+        $this->horaGeneracion = $horaGeneracion;
+        $this->montoTotal = $montoTotal;
     }
+
 }
+?>
