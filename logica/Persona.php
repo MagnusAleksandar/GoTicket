@@ -1,9 +1,13 @@
 <?php
 class Persona{
-    private $id, $nombre, $email, $telefono;
+    private $id, $clave, $nombre, $email, $telefono;
     
     public function getId() {
         return $this->id;
+    }
+
+    public function getClave() {
+        return $this->clave;
     }
 
     public function getNombre() {
@@ -22,6 +26,10 @@ class Persona{
         $this->id = $id;
     }
 
+    public function setClave($clave) {
+        $this->clave = $clave;
+    }
+
     public function setNombre($nombre) {
         $this->nombre = $nombre;
     }
@@ -34,8 +42,9 @@ class Persona{
         $this->telefono = $telefono;
     }
 
-    public function __construct($id, $nombre, $email, $telefono) {
+    public function __construct($id=null, $clave=null, $nombre=null, $email=null, $telefono=null) {
         $this->id = $id;
+        $this->clave = $clave;
         $this->nombre = $nombre;
         $this->email = $email;
         $this->telefono = $telefono;

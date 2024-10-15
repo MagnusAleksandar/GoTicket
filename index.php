@@ -1,5 +1,8 @@
 <?php
 require ("logica/Evento.php");
+require ("logica/Persona.php");
+require ("logica/Proveedor.php");
+
 ?>
 <html>
 <head>
@@ -21,7 +24,7 @@ require ("logica/Evento.php");
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-				<ul class="navbar-nav">
+				<ul class="navbar-nav me-auto">
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
 						href="#" role="button" data-bs-toggle="dropdown"
 						aria-expanded="false">Eventos</a>
@@ -39,6 +42,27 @@ require ("logica/Evento.php");
                             ?>
 						</ul>
 					</li>
+					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+						href="#" role="button" data-bs-toggle="dropdown"
+						aria-expanded="false">Organizadores</a>
+						<ul class="dropdown-menu">
+                            <?php
+                            $proveedor = new Proveedor();
+                            $listaProveedores = $proveedor->consultarTodos();
+							if(empty($listaProveedores)){
+								echo "<li><a class='dropdown-item' href='#'>No hay proveedores en este momento</a></li>";
+							}else{
+								foreach ($listaProveedores as $proveedorActual) {
+									echo "<li><a class='dropdown-item' href='#'>" . $proveedorActual->getNombre() . "</a></li>";
+								}
+							}
+                            ?>
+						</ul>
+					</li>
+				</ul>
+				<ul class="navbar-nav">
+				<li class="nav-item"><a href="iniciarSesion.php" class="nav-link"
+					aria-disabled="true">Iniciar Sesion</a></li>
 				</ul>
 			</div>
 		</div>
