@@ -37,7 +37,7 @@ class Boleta {
     }
 
     // Constructor
-    public function __construct($idBoleta, $idAsistente, $idFactura, $precio) {
+    public function __construct($idBoleta=null, $idAsistente=null, $idFactura=null, $precio=null) {
         $this->idBoleta = $idBoleta;
         $this->idAsistente = $idAsistente;
         $this->idFactura = $idFactura;

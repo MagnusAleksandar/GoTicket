@@ -18,19 +18,19 @@ class Persona{
         return $this->telefono;
     }
 
-    public function setId($id): void {
+    public function setId($id) {
         $this->id = $id;
     }
 
-    public function setNombre($nombre): void {
+    public function setNombre($nombre) {
         $this->nombre = $nombre;
     }
 
-    public function setEmail($email): void {
+    public function setEmail($email) {
         $this->email = $email;
     }
 
-    public function setTelefono($telefono): void {
+    public function setTelefono($telefono) {
         $this->telefono = $telefono;
     }
 

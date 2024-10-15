@@ -26,31 +26,31 @@ class Factura {
         return $this->montoTotal;
     }
 
-    public function setIdFactura($idFactura): void {
+    public function setIdFactura($idFactura) {
         $this->idFactura = $idFactura;
     }
 
-    public function setIdCliente($idCliente): void {
+    public function setIdCliente($idCliente) {
         $this->idCliente = $idCliente;
     }
 
-    public function setPulep($pulep): void {
+    public function setPulep($pulep) {
         $this->pulep = $pulep;
     }
 
-    public function setFechaGeneracion($fechaGeneracion): void {
+    public function setFechaGeneracion($fechaGeneracion) {
         $this->fechaGeneracion = $fechaGeneracion;
     }
 
-    public function setHoraGeneracion($horaGeneracion): void {
+    public function setHoraGeneracion($horaGeneracion) {
         $this->horaGeneracion = $horaGeneracion;
     }
 
-    public function setMontoTotal($montoTotal): void {
+    public function setMontoTotal($montoTotal) {
         $this->montoTotal = $montoTotal;
     }
 
-    public function __construct($idFactura, $idBoleta, $idCliente, $pulep, $fechaGeneracion, $horaGeneracion, $montoTotal) {
+    public function __construct($idFactura=null, $idBoleta=null, $idCliente=null, $pulep=null, $fechaGeneracion=null, $horaGeneracion=null, $montoTotal=null) {
         $this->idFactura = $idFactura;
         $this->idBoleta = $idBoleta;
         $this->idCliente = $idCliente;
