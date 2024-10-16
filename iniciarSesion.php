@@ -4,9 +4,9 @@ require ("logica/Persona.php");
 require ("logica/Proveedor.php");
 $error = false;
 if(isset($_POST["autenticar"])){
-    $proveedor = new Proveedor(null, null, null, $_POST["correo"], md5($_POST["clave"]));
+    $proveedor = new Proveedor(null, md5($_POST["clave"]), null, $_POST["correo"], null);
     if($proveedor -> autenticar()){
-        $_SESSION["id"] = $proveedor -> getIdPersona();
+        $_SESSION["id"] = $proveedor -> getId();
         header("Location: sesionProveedor.php");     
     }else{
         $error = true;
@@ -43,8 +43,10 @@ if(isset($_POST["autenticar"])){
 							<?php if($error){ ?>
                             <div class="alert alert-danger mt-3" role="alert">
                             	Error de correo o clave
-							</div>    
-							<?php } ?>
+							</div>   
+							<?php
+							}
+							?>
 						</form>
 					</div>
 				</div>

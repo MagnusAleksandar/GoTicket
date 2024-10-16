@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(isset($_GET["cerrarSesion"])){
+    session_destroy();
+}
 require ("logica/Evento.php");
 require ("logica/Persona.php");
 require ("logica/Proveedor.php");
@@ -53,6 +57,7 @@ require ("logica/Proveedor.php");
 								echo "<li><a class='dropdown-item' href='#'>No hay proveedores en este momento</a></li>";
 							}else{
 								foreach ($listaProveedores as $proveedorActual) {
+
 									echo "<li><a class='dropdown-item' href='#'>" . $proveedorActual->getNombre() . "</a></li>";
 								}
 							}

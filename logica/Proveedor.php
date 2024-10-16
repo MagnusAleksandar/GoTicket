@@ -16,11 +16,39 @@ class Proveedor extends Persona {
         $proveedorDAO = new ProveedorDAO();
         $conexion -> ejecutarConsulta($proveedorDAO -> consultarTodos());
         while($registro = $conexion -> siguienteRegistro()){
-            $proveedor = new Proveedo($registro[0], $registro[1], $registro[2], $registro[3]);
+            $proveedor = new Proveedor($registro[0], $registro[1], $registro[2], $registro[3], $registro[4]);
             array_push($listaProveedores, $proveedor);
         }
         $conexion -> cerrarConexion();
         return $listaProveedores; 
+    }
+
+    public function consultarPorId(){
+        $conexion = new Conexion();
+        $conexion -> abrirConexion();
+        $proveedorDAO = new ProveedorDAO($this -> id);
+        $conexion -> ejecutarConsulta($proveedorDAO -> consultarPorId());
+        $registro = $conexion -> siguienteRegistro();
+        $this -> nombre = $registro[0];
+        $this -> email = $registro[1];
+        $this -> telefono = $registro[2];
+        $conexion -> cerrarConexion();
+    }
+
+    public function autenticar(){
+        $conexion = new Conexion();
+        $conexion -> abrirConexion();
+        $proveedorDAO = new ProveedorDAO(null,  $this -> clave, null, $this -> email, null);
+        $conexion -> ejecutarConsulta($proveedorDAO -> autenticar());
+        if($conexion -> numeroFilas() == 0){
+            $conexion -> cerrarConexion();
+            return false;
+        }else{
+            $registro = $conexion -> siguienteRegistro();
+            $this -> id = $registro[0];
+            $conexion -> cerrarConexion();
+            return true;
+        }
     }
 
 }

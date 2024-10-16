@@ -11,7 +11,15 @@ class ProveedorDAO{
     }
 
     public function consultarTodos(){
-        return "SELECT `nit`, `nombre`, `email`, `telefono` FROM `proveedor`";
+        return "SELECT `nit`, `clave`, `nombre`, `email`, `telefono` FROM `proveedor`";
+    }
+
+    public function autenticar(){
+        return "SELECT `nit` FROM `proveedor` WHERE email = '" . $this -> email . "' and clave = '" . $this -> clave . "'";
+    }
+
+    public function consultarPorId(){
+        return "SELECT `nombre`, `email`, `telefono` FROM `proveedor` WHERE nit = '" . $this -> id . "'";
     }
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 class Persona{
-    private $id, $clave, $nombre, $email, $telefono;
+    protected $id, $clave, $nombre, $email, $telefono;
     
     public function getId() {
         return $this->id;

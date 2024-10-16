@@ -15,5 +15,14 @@ class EventoDAO {
         return "SELECT `pulep`, `nombre`, `fecha`, `hora`, `aforo`, `nitProveedor` FROM `evento`";
     }
 
+    public function agregarEvento($pulep, $nombre, $fecha, $hora, $aforo, $proveedor){
+        return "INSERT INTO `evento`(`pulep`, `nombre`, `fecha`, `hora`, `aforo`, `nitProveedor`) 
+                VALUES ('$pulep', '$nombre', '$fecha', '$hora', '$aforo', '$proveedor')";
+    }
+
+    public function consultarPorPulep($pulep){
+        return "SELECT `nombre`, `fecha`, `hora`, `aforo`, `nitProveedor` FROM `evento`
+        WHERE `pulep` = $pulep";
+    }
 }
 ?>

@@ -75,6 +75,23 @@ class Evento {
         $conexion -> cerrarConexion();
         return $listaEventos; 
     }
+    public function agregarEvento($pulep, $nombre, $fecha, $hora, $aforo, $proveedor){
+        $conexion = new Conexion();
+        $conexion -> abrirConexion();
+        $eventoDAO = new EventoDAO();
+        $conexion -> ejecutarConsulta($eventoDAO -> consultarPorPulep($pulep));
+        if(!$registro = $conexion -> siguienteRegistro()){
+            $conexion -> ejecutarConsulta($eventoDAO -> agregarEvento($pulep, $nombre, $fecha, $hora, $aforo, $proveedor));
+            $conexion -> ejecutarConsulta($eventoDAO -> consultarPorPulep($pulep));
+            if($registro = $conexion -> siguienteRegistro()){
+                $conexion -> cerrarConexion();
+                return true;
+            }
+        }else{
+            $conexion -> cerrarConexion();
+            return false;
+        }
+    }
 
 }
 ?>
