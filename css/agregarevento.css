@@ -1,0 +1,116 @@
+/* General body style */
+body {
+  font-family: system-ui;
+  background: #dfd4d6;
+}
+
+/* Navbar styling */
+.custom-navbar {
+  background-color: #dc3545;
+  border-radius: 25px;
+  margin: 10px 20px;
+  overflow: visible;
+}
+
+/* Ajusta el margen de los elementos de la barra de navegación */
+.navbar-nav .nav-item {
+  margin-right: 20px; /* Aumenta este valor según sea necesario */
+}
+
+/* O, si prefieres ajustar el margen solo en los botones */
+.navbar-nav .dropdown .btn {
+  margin-right: 15px; /* Aumenta este valor según sea necesario */
+}
+
+/* Ajusta el margen en el último botón para evitar espacio extra al final */
+.navbar-nav .nav-item:last-child {
+  margin-right: 0; /* Elimina el margen del último elemento */
+}
+
+/* Button styling */
+.btn,
+.custom-btn,
+.btn-comprar {
+  background-color: #ff914d;
+  color: white;
+  font-family: system-ui;
+  border-radius: 50px;
+  border: solid #ff914d;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.btn:hover,
+.custom-btn:hover,
+.btn-comprar:hover {
+  font-weight: bold;
+  color: white;
+  background-color: #ff914d;
+  border: 2px solid #dc3545;
+}
+
+.btn:active,
+.btn:focus,
+.custom-btn:active,
+.custom-btn:focus,
+.btn-comprar:active,
+.btn-comprar:focus {
+  background-color: #dc3545;
+  color: white;
+  border: 2px solid white;
+}
+
+/* User profile icon styling */
+.usuario {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.usuario img {
+  display: block;
+  margin: auto;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  background-color: #ff914d; /* Color de fondo del dropdown */
+  border-radius: 10px; /* Esquinas redondeadas */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra para el dropdown */
+}
+
+.dropdown-item {
+  color: white; /* Color del texto */
+}
+
+.dropdown-item:hover {
+  background-color: #dc3545; /* Color de fondo al pasar el ratón */
+  color: white; /* Color del texto al pasar el ratón */
+}
+
+/* Card styling */
+.card {
+  background-color: #dfd4d6;
+  border: 5px solid #dc3545;
+  border-radius: 10px;
+  transition: transform 0.2s;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  background-color: #dc3545;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-title {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.container.mt-4 {
+  text-align: center;
+  margin: 50px auto;
+  width: 90%;
+}
