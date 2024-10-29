@@ -6,7 +6,7 @@ require_once ("logica/Evento.php");
 if(isset($_POST["agregar"])){
     $evento = new Evento();
     if(!empty($_POST["pulep"]) && !empty($_POST["nombreEv"]) && !empty($_POST["fechaEv"]) && !empty($_POST["horaEv"]) && !empty($_POST["aforo"])){
-        if($evento -> agregarEvento($_POST["pulep"], $_POST["nombreEv"], $_POST["fechaEv"], $_POST["horaEv"], $_POST["aforo"], $_SESSION["id"]))
+        if($evento -> agregarEvento($_POST["pulep"], $_POST["nombreEv"], $_POST["fechaEv"], $_POST["horaEv"], $_POST["aforo"], $_SESSION["id"], null))
             echo "<div class='alert alert-success' role='alert'>Evento agregado correctamente.</div>";
         else
         echo "<div class='alert alert-danger' role='alert'>Ya existe un evento con este código pulep</div>";
@@ -21,8 +21,7 @@ if(isset($_POST["agregar"])){
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <?php include("script.php");?>
     <link rel="stylesheet" href="css/agregarevento.css">
 </head>
 <body>
