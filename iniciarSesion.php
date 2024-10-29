@@ -32,7 +32,7 @@ if(isset($_POST["autenticar"])){
 		<div class="row mt-5">
 			<div class="col-4"></div>
 			<div class="col-4">
-				<div class="card border-primary">
+				<div class="card">
 					<div class="card-header text-bg-info">
 						<h4>Iniciar Sesion</h4>
 					</div>

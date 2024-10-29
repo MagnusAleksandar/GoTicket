@@ -3,8 +3,9 @@ require_once ("./persistencia/Conexion.php");
 require ("./persistencia/EventoDAO.php");
 
 class Evento {
-    private $pulep, $nombre, $fecha, $hora, $aforo, $proveedor;
+    private $pulep, $nombre, $fecha, $hora, $aforo, $proveedor, $imagen; // Nuevo atributo para la imagen
     
+    // Getters
     public function getPulep() {
         return $this->pulep;
     }
@@ -29,6 +30,11 @@ class Evento {
         return $this->proveedor;
     }
 
+    public function getImagen() { // Getter para la imagen
+        return $this->imagen;
+    }
+
+    // Setters
     public function setPulep($pulep) {
         $this->pulep = $pulep;
     }
@@ -53,45 +59,54 @@ class Evento {
         $this->proveedor = $proveedor;
     }
 
-    public function __construct($pulep=null, $nombre=null, $fecha=null, $hora=null, $aforo=null, $proveedor=null) {
+    public function setImagen($imagen) { // Setter para la imagen
+        $this->imagen = $imagen;
+    }
+
+    // Constructor
+    public function __construct($pulep=null, $nombre=null, $fecha=null, $hora=null, $aforo=null, $proveedor=null, $imagen=null) {
         $this->pulep = $pulep;
         $this->nombre = $nombre;
         $this->fecha = $fecha;
         $this->hora = $hora;
         $this->aforo = $aforo;
         $this->proveedor = $proveedor;
+        $this->imagen = $imagen; // Inicializa el nuevo atributo
     }
 
+    // Método para consultar todos los eventos
     public function consultarTodos(){
         $listaEventos = array();
         $conexion = new Conexion();
-        $conexion -> abrirConexion();
+        $conexion->abrirConexion();
         $eventoDAO = new EventoDAO();
-        $conexion -> ejecutarConsulta($eventoDAO -> consultarTodos());
-        while($registro = $conexion -> siguienteRegistro()){
-            $evento = new Evento($registro[0], $registro[1], $registro[2], $registro[3], $registro[4]);
+        $conexion->ejecutarConsulta($eventoDAO->consultarTodos());
+        while($registro = $conexion->siguienteRegistro()){
+            // Asegúrate de que el registro devuelva la imagen en la posición adecuada
+            $evento = new Evento($registro[0], $registro[1], $registro[2], $registro[3], $registro[4], $registro[5], $registro[6]); // Asumiendo que la imagen está en la posición 5
             array_push($listaEventos, $evento);
         }
-        $conexion -> cerrarConexion();
+        $conexion->cerrarConexion();
         return $listaEventos; 
     }
-    public function agregarEvento($pulep, $nombre, $fecha, $hora, $aforo, $proveedor){
+
+    // Método para agregar un evento
+    public function agregarEvento($pulep, $nombre, $fecha, $hora, $aforo, $proveedor, $imagen){
         $conexion = new Conexion();
-        $conexion -> abrirConexion();
+        $conexion->abrirConexion();
         $eventoDAO = new EventoDAO();
-        $conexion -> ejecutarConsulta($eventoDAO -> consultarPorPulep($pulep));
-        if(!$registro = $conexion -> siguienteRegistro()){
-            $conexion -> ejecutarConsulta($eventoDAO -> agregarEvento($pulep, $nombre, $fecha, $hora, $aforo, $proveedor));
-            $conexion -> ejecutarConsulta($eventoDAO -> consultarPorPulep($pulep));
-            if($registro = $conexion -> siguienteRegistro()){
-                $conexion -> cerrarConexion();
+        $conexion->ejecutarConsulta($eventoDAO->consultarPorPulep($pulep));
+        if(!$registro = $conexion->siguienteRegistro()){
+            $conexion->ejecutarConsulta($eventoDAO->agregarEvento($pulep, $nombre, $fecha, $hora, $aforo, $proveedor, $imagen)); // Asegúrate de incluir la imagen
+            $conexion->ejecutarConsulta($eventoDAO->consultarPorPulep($pulep));
+            if($registro = $conexion->siguienteRegistro()){
+                $conexion->cerrarConexion();
                 return true;
             }
         }else{
-            $conexion -> cerrarConexion();
+            $conexion->cerrarConexion();
             return false;
         }
     }
-
 }
 ?>

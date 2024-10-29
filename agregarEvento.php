@@ -30,8 +30,8 @@ if(isset($_POST["agregar"])){
         <div class="row mt-5">
         <div class="col-4"></div>
             <div class="col-4">
-                <div class="card border-primary">
-                    <div class="card-header text-bg-info">
+                <div class="card">
+                    <div class="card-header">
                         <h4>Añadir evento a inventorio</h4>
                     </div>
                     <div class="card-body">
