@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `goticket`.`evento` (
   `hora` TIME NOT NULL,
   `aforo` INT(11) NOT NULL,
   `nitProveedor` INT(11) NOT NULL,
+  `imagen` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`pulep`, `nitProveedor`),
   FOREIGN KEY (`nitProveedor`)
     REFERENCES `goticket`.`proveedor` (`nit`)
@@ -69,4 +70,16 @@ CREATE TABLE IF NOT EXISTS `goticket`.`boleta` (
     REFERENCES `goticket`.`factura` (`idFactura`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
-ENGINE = InnoDB
+ENGINE = InnoDB;
+
+
+-- INSERTS
+INSERT INTO `goticket`.`evento` (`pulep`, `nombre`, `fecha`, `hora`, `aforo`, `nitProveedor`, `imagen`) VALUES
+('0001', 'Charla Motivacional', '2024-11-01', '10:00:00', 150, 1, 'charlamotivacional.jpg'),
+('0002', 'Concierto de Jazz', '2024-11-05', '20:00:00', 300, 1, 'conciertodejazz.jpg'),
+('0003', 'Concierto de Rock', '2024-11-08', '21:30:00', 500, 1, 'conciertodderock.jpg'),
+('0004', 'Conferencia Tecnológica', '2024-11-10', '09:00:00', 200, 1, 'conferenciadetecnologia.jpg'),
+('0005', 'Exposición de Arte', '2024-11-15', '11:00:00', 100, 1, 'exposiciondearte.jpg'),
+('0006', 'Festival de Cine', '2024-11-18', '19:00:00', 400, 1, 'festivaldecine.jpg'),
+('0007', 'Feria de Emprendimiento', '2024-11-20', '15:00:00', 250, 1, 'feriadeemprendimiento.jpg'),
+('0008', 'Teatro Musical', '2024-11-25', '18:30:00', 350, 1, 'teatromusical.jpg');
