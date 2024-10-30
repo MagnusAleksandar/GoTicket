@@ -90,6 +90,21 @@ class Evento {
         return $listaEventos; 
     }
 
+    public function consultarPorPulep($pulep){
+        $conexion = new Conexion();
+        $conexion -> abrirConexion();
+        $eventoDAO = new EventoDAO();
+        $conexion -> ejecutarConsulta($eventoDAO -> consultarPorPulep($pulep));
+        $registro = $conexion -> siguienteRegistro();
+        $this -> nombre = $registro[0];
+        $this -> fecha = $registro[1];
+        $this -> hora = $registro[2];
+        $this -> aforo = $registro[3];
+        $this -> proveedor = $registro[4];
+        $this -> imagen = $registro[5];
+        $conexion -> cerrarConexion();
+    }
+
     // Método para agregar un evento
     public function agregarEvento($pulep, $nombre, $fecha, $hora, $aforo, $proveedor, $imagen){
         $conexion = new Conexion();

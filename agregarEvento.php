@@ -5,22 +5,16 @@ require_once ("logica/Evento.php");
 
 if(isset($_POST["agregar"])){
     $evento = new Evento();
-    if(!empty($_POST["pulep"]) && !empty($_POST["nombreEv"]) && !empty($_POST["fechaEv"]) && !empty($_POST["horaEv"]) && !empty($_POST["aforo"])){
-        if($evento -> agregarEvento($_POST["pulep"], $_POST["nombreEv"], $_POST["fechaEv"], $_POST["horaEv"], $_POST["aforo"], $_SESSION["id"], null))
-            echo "<div class='alert alert-success' role='alert'>Evento agregado correctamente.</div>";
-        else
+    if($evento -> agregarEvento($_POST["pulep"], $_POST["nombreEv"], $_POST["fechaEv"], $_POST["horaEv"], $_POST["aforo"], $_SESSION["id"], null))
+        echo "<div class='alert alert-success' role='alert'>Evento agregado correctamente.</div>";
+    else
         echo "<div class='alert alert-danger' role='alert'>Ya existe un evento con este código pulep</div>";
-    }else{
-        echo "<div class='alert alert-danger' role='alert'>Debe completar el formulario</div>";
-    }
 }
 ?>
 
 <html>
 <head>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+    <title>Nuevo Evento</title>
     <?php include("script.php");?>
     <link rel="stylesheet" href="css/agregarevento.css">
 </head>
@@ -36,19 +30,19 @@ if(isset($_POST["agregar"])){
                     <div class="card-body">
                         <form method="post" action="agregarEvento.php" >
                             <div class="form-group mb-3">
-                                <input type="text" inputmode="numeric" name="pulep" class="form-control" placeholder="Código del evento">
+                                <input type="text" inputmode="numeric" name="pulep" class="form-control" placeholder="Código del evento" required>
                             </div>
                             <div class="form-group mb-3">
-                                <input type="text" name="nombreEv" class="form-control" placeholder="Nombre del evento">
+                                <input type="text" name="nombreEv" class="form-control" placeholder="Nombre del evento" required>
                             </div>
                             <div class="form-group mb-3">
-                                <input type="date" name="fechaEv" class="form-control"/>
+                                <input type="date" name="fechaEv" class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
-                                <input type="time" name="horaEv" class="form-control"/>
+                                <input type="time" name="horaEv" class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
-                                <input type="text" inputmode="numeric" name="aforo" class="form-control" placeholder="Aforo"/>
+                                <input type="text" inputmode="numeric" name="aforo" class="form-control" placeholder="Aforo" required>
                             </div>
                             <div class="row">
                             <div class="row">

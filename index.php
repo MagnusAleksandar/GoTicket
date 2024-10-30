@@ -12,7 +12,6 @@ require ("logica/Proveedor.php");
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoTicket</title>
     <?php include("script.php");?>
     <link rel="stylesheet" href="css/index.css">
@@ -38,7 +37,7 @@ require ("logica/Proveedor.php");
                                     $evento = new Evento();
                                     $eventos = $evento->consultarTodos();
                                     foreach ($eventos as $eventoActual) {
-                                        echo "<li><a class='dropdown-item' href='#'>" . $eventoActual->getNombre() . "</a></li>";
+                                        echo "<li><a class='dropdown-item' href='".str_replace(' ', '', $eventoActual->getNombre()) .".php'>" . $eventoActual->getNombre() . "</a></li>";
                                     }
                                     ?>
                                 </ul>
@@ -53,7 +52,6 @@ require ("logica/Proveedor.php");
                                 </button>
                                 <ul class="dropdown-menu">
                                     <?php
-                                    // Suponiendo que tienes una clase Proveedor similar a Evento
                                     $proveedor = new Proveedor();
                                     $proveedores = $proveedor->consultarTodos();
                                     foreach ($proveedores as $proveedorActual) {
@@ -91,14 +89,16 @@ require ("logica/Proveedor.php");
                             if ($i % 4 == 0) echo "<div class='row mb-3'>";
                             echo "<div class='col-lg-3 col-md-4 col-sm-6'>";
                             echo "<div class='card' style='height: 100%;'>";
-                            echo "<img src='" . $eventoActual->getImagen() . "' class='card-img-top' alt='Imagen de " . $eventoActual->getNombre() . "' style='height: 70%; object-fit: cover;'/>";
+                            if($eventoActual->getImagen() != null)
+                                echo "<img src='" . $eventoActual->getImagen() . "' class='card-img-top' alt='Imagen de " . $eventoActual->getNombre() . "' style='height: 70%; object-fit: cover;'/>";
+                            else
+                                echo "<div class='text-center'><img src='https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/256/faq-icon.png' width='70%'></div>";
                             echo "<div class='card-body'>";
                             echo "<h5 class='card-title'>" . $eventoActual->getNombre() . "</h5>";
                             echo "<p class='card-text'>Fecha: <strong>" . $eventoActual->getFecha() . "</strong></p>";
                             echo "<p class='card-text'>Hora: <strong>" . $eventoActual->getHora() . "</strong></p>";
                             echo "<p class='card-text'>Aforo: <strong>" . $eventoActual->getAforo() . "</strong></p>";
-                            echo "<p class='card-text'>Proveedor: <strong>" . $eventoActual->getProveedor() . "</strong></p>";
-                            echo "<a href='#' class='btn btn-comprar'>Comprar Boleta</a>";
+                            echo "<a href='compraEvento.php?pulep=" . $eventoActual->getPulep() . "' class='btn btn-comprar'>Comprar Boleta</a>";
                             echo "</div>";
                             echo "</div>";
                             echo "</div>";

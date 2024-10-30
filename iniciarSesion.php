@@ -5,23 +5,17 @@ require ("logica/Proveedor.php");
 $error = false;
 if(isset($_POST["autenticar"])){
     $proveedor = new Proveedor(null, md5($_POST["clave"]), null, $_POST["correo"], null);
-	if(!empty($_POST["correo"]) && !empty($_POST["clave"])){
-		if($proveedor -> autenticar()){
-			$_SESSION["id"] = $proveedor -> getId();
-			header("Location: sesionProveedor.php");     
-		}else{
-			$error = true;
-		}
+	if($proveedor -> autenticar()){
+		$_SESSION["id"] = $proveedor -> getId();
+		header("Location: sesionProveedor.php");     
 	}else{
-        echo "<div class='alert alert-danger' role='alert'>Debe llenar ambos cambios</div>";
-    }
+		$error = true;
+	}
 }
 ?>
 <html>
 <head>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+	<title>Iniciar Sesión</title>
 	<?php include("script.php");?>
 	<link rel="stylesheet" href="css/iniciarsesion.css">
 </head>
@@ -38,10 +32,10 @@ if(isset($_POST["autenticar"])){
 					<div class="card-body">
 						<form method="post" action="iniciarSesion.php" >
 							<div class="mb-3">
-								<input type="email" name="correo" class="form-control" placeholder="Correo" >
+								<input type="email" name="correo" class="form-control" placeholder="Correo" required>
 							</div>
 							<div class="mb-3">
-								<input type="password" name="clave" class="form-control" placeholder="Clave">
+								<input type="password" name="clave" class="form-control" placeholder="Clave" required>
 							</div>
 							<button type="submit" name="autenticar" class="btn btn-primary">Iniciar Sesion</button>
 							<?php if($error){ ?>
