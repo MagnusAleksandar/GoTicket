@@ -1,17 +1,15 @@
 <?php
+include("persistencia/FacturaDAO.php");
+
 class Factura {
-    private $idFactura, $idCliente, $pulep, $fechaGeneracion, $horaGeneracion, $montoTotal;
-    
+    private $idFactura, $idCliente, $fechaGeneracion, $horaGeneracion, $montoTotal;
+            //`idFactura`, `idCliente`, `fecha_generacion`, `hora_generacion`, `monto_total`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]')
     public function getIdFactura() {
         return $this->idFactura;
     }
 
     public function getIdCliente() {
         return $this->idCliente;
-    }
-
-    public function getPulep() {
-        return $this->pulep;
     }
 
     public function getFechaGeneracion() {
@@ -34,10 +32,6 @@ class Factura {
         $this->idCliente = $idCliente;
     }
 
-    public function setPulep($pulep) {
-        $this->pulep = $pulep;
-    }
-
     public function setFechaGeneracion($fechaGeneracion) {
         $this->fechaGeneracion = $fechaGeneracion;
     }
@@ -50,15 +44,30 @@ class Factura {
         $this->montoTotal = $montoTotal;
     }
 
-    public function __construct($idFactura=null, $idBoleta=null, $idCliente=null, $pulep=null, $fechaGeneracion=null, $horaGeneracion=null, $montoTotal=null) {
+    public function __construct($idFactura=null, $idCliente=null, $fechaGeneracion=null, $horaGeneracion=null, $montoTotal=null) {
         $this->idFactura = $idFactura;
-        $this->idBoleta = $idBoleta;
         $this->idCliente = $idCliente;
-        $this->pulep = $pulep;
         $this->fechaGeneracion = $fechaGeneracion;
         $this->horaGeneracion = $horaGeneracion;
         $this->montoTotal = $montoTotal;
     }
 
+    public function nuevaFactura($idFactura, $idCliente, $fechaGeneracion, $horaGeneracion, $montoTotal){
+        $conexion = new Conexion();
+        $conexion->abrirConexion();
+        $facturaDAO = new FacturaDAO();
+        $conexion->ejecutarConsulta($facturaDAO->consultarPorId($idFactura));
+        if(!$registro = $conexion->siguienteRegistro()){
+            $conexion->ejecutarConsulta($facturaDAO->nuevaFactura($idFactura, $idCliente, $fechaGeneracion, $horaGeneracion, $montoTotal)); // Asegúrate de incluir la imagen
+            $conexion->ejecutarConsulta($facturaDAO->consultarPorId($idFactura));
+            if($registro = $conexion->siguienteRegistro()){
+                $conexion->cerrarConexion();
+                return true;
+            }
+        }else{
+            $conexion->cerrarConexion();
+            return false;
+        }
+    }
 }
 ?>

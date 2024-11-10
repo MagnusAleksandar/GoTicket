@@ -1,10 +1,10 @@
 <?php
-
 $cantidad = isset($_POST['cantidad']) ? (int)$_POST['cantidad'] : 0;
 $evento = new Evento;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pulep = $_POST['pulep'];
     $evento->consultarPorPulep($pulep);
+    $_SESSION['precio'] = $evento -> getPrecio();
 }
 if ($cantidad > 0){
     $_SESSION['cantidad'] = $cantidad;

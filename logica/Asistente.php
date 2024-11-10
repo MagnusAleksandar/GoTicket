@@ -2,7 +2,7 @@
 require ("./persistencia/AsistenteDAO.php");
 
 class Asistente extends Persona {
-    public function agregarAsistente(){
+    public function agregarAsistente($id, $nombre, $email, $telefono){
         $conexion = new Conexion();
         $conexion->abrirConexion();
         $asistenteDAO = new AsistenteDAO();
