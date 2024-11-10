@@ -1,8 +1,4 @@
 <?php
-session_start();
-
-require_once ("logica/Evento.php");
-
 if(isset($_POST["agregar"])){
     $evento = new Evento();
     if($evento -> agregarEvento($_POST["pulep"], $_POST["nombreEv"], $_POST["fechaEv"], $_POST["horaEv"], $_POST["aforo"], $_SESSION["id"], null))
@@ -15,7 +11,6 @@ if(isset($_POST["agregar"])){
 <html>
 <head>
     <title>Nuevo Evento</title>
-    <?php include("script.php");?>
     <link rel="stylesheet" href="css/agregarevento.css">
 </head>
 <body>
@@ -28,7 +23,7 @@ if(isset($_POST["agregar"])){
                         <h4>Añadir evento a inventorio</h4>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="agregarEvento.php" >
+                        <form method="post" action="?pid=<?php echo base64_encode("presentacion/eventos/agregarEvento.php")?>" >
                             <div class="form-group mb-3">
                                 <input type="text" inputmode="numeric" name="pulep" class="form-control" placeholder="Código del evento" required>
                             </div>
@@ -42,6 +37,9 @@ if(isset($_POST["agregar"])){
                                 <input type="time" name="horaEv" class="form-control" required>
                             </div>
                             <div class="form-group mb-3">
+                                <input type="text" inputmode="numeric" name="aforo" class="form-control" placeholder="Precio" required>
+                            </div>
+                            <div class="form-group mb-3">
                                 <input type="text" inputmode="numeric" name="aforo" class="form-control" placeholder="Aforo" required>
                             </div>
                             <div class="row">
@@ -51,7 +49,7 @@ if(isset($_POST["agregar"])){
                                     <button type="submit" name="agregar" class="btn btn-primary">Agregar</button>
                                 </div>
                                 <div class="col-8">
-                                    <a href="sesionProveedor.php" class="btn btn-primary" role="button">Volver a página principal</a>
+                                    <a href="?pid=<?php echo base64_encode("presentacion/proveedor/sesionProveedor.php")?>" class="btn btn-primary" role="button">Volver a página principal</a>
                                 </div>
                             </div>
                         </form>

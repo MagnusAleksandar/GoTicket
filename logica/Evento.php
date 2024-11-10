@@ -3,7 +3,7 @@ require_once ("./persistencia/Conexion.php");
 require ("./persistencia/EventoDAO.php");
 
 class Evento {
-    private $pulep, $nombre, $fecha, $hora, $aforo, $proveedor, $imagen; // Nuevo atributo para la imagen
+    private $pulep, $nombre, $fecha, $hora, $precio, $aforo, $proveedor, $imagen; // Nuevo atributo para la imagen
     
     // Getters
     public function getPulep() {
@@ -22,6 +22,10 @@ class Evento {
         return $this->hora;
     }
 
+    public function getPrecio() {
+        return $this->precio;
+    }
+
     public function getAforo() {
         return $this->aforo;
     }
@@ -30,7 +34,7 @@ class Evento {
         return $this->proveedor;
     }
 
-    public function getImagen() { // Getter para la imagen
+    public function getImagen() {
         return $this->imagen;
     }
 
@@ -51,6 +55,10 @@ class Evento {
         $this->hora = $hora;
     }
 
+    public function setPrecio($precio) {
+        $this->precio = $precio;
+    }
+
     public function setAforo($aforo) {
         $this->aforo = $aforo;
     }
@@ -64,14 +72,15 @@ class Evento {
     }
 
     // Constructor
-    public function __construct($pulep=null, $nombre=null, $fecha=null, $hora=null, $aforo=null, $proveedor=null, $imagen=null) {
+    public function __construct($pulep=null, $nombre=null, $fecha=null, $hora=null, $precio=null, $aforo=null, $proveedor=null, $imagen=null) {
         $this->pulep = $pulep;
         $this->nombre = $nombre;
         $this->fecha = $fecha;
         $this->hora = $hora;
+        $this->precio = $precio;
         $this->aforo = $aforo;
         $this->proveedor = $proveedor;
-        $this->imagen = $imagen; // Inicializa el nuevo atributo
+        $this->imagen = $imagen; 
     }
 
     // Método para consultar todos los eventos
@@ -82,8 +91,7 @@ class Evento {
         $eventoDAO = new EventoDAO();
         $conexion->ejecutarConsulta($eventoDAO->consultarTodos());
         while($registro = $conexion->siguienteRegistro()){
-            // Asegúrate de que el registro devuelva la imagen en la posición adecuada
-            $evento = new Evento($registro[0], $registro[1], $registro[2], $registro[3], $registro[4], $registro[5], $registro[6]); // Asumiendo que la imagen está en la posición 5
+            $evento = new Evento($registro[0], $registro[1], $registro[2], $registro[3], $registro[4], $registro[5], $registro[6], $registro[7]); // Asumiendo que la imagen está en la posición 5
             array_push($listaEventos, $evento);
         }
         $conexion->cerrarConexion();
@@ -99,20 +107,21 @@ class Evento {
         $this -> nombre = $registro[0];
         $this -> fecha = $registro[1];
         $this -> hora = $registro[2];
-        $this -> aforo = $registro[3];
-        $this -> proveedor = $registro[4];
-        $this -> imagen = $registro[5];
+        $this -> precio = $registro[3];
+        $this -> aforo = $registro[4];
+        $this -> proveedor = $registro[5];
+        $this -> imagen = $registro[6];
         $conexion -> cerrarConexion();
     }
 
     // Método para agregar un evento
-    public function agregarEvento($pulep, $nombre, $fecha, $hora, $aforo, $proveedor, $imagen){
+    public function agregarEvento($pulep, $nombre, $fecha, $hora, $aforo, $precio, $proveedor, $imagen){
         $conexion = new Conexion();
         $conexion->abrirConexion();
         $eventoDAO = new EventoDAO();
         $conexion->ejecutarConsulta($eventoDAO->consultarPorPulep($pulep));
         if(!$registro = $conexion->siguienteRegistro()){
-            $conexion->ejecutarConsulta($eventoDAO->agregarEvento($pulep, $nombre, $fecha, $hora, $aforo, $proveedor, $imagen)); // Asegúrate de incluir la imagen
+            $conexion->ejecutarConsulta($eventoDAO->agregarEvento($pulep, $nombre, $fecha, $hora, $aforo, $precio, $proveedor, $imagen)); // Asegúrate de incluir la imagen
             $conexion->ejecutarConsulta($eventoDAO->consultarPorPulep($pulep));
             if($registro = $conexion->siguienteRegistro()){
                 $conexion->cerrarConexion();
